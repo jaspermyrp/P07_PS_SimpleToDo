@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner spnTaskSelection;
     EditText etTask;
-    Button btnAdd, btnDelete, btnClear;
+    Button btnAdd, btnDelete, btnClear, btnSort;
     ListView lvTask;
 
     ArrayList<String> alTaskList = new ArrayList<String>();
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.btnAddTask);
         btnDelete = findViewById(R.id.btnDeleteTask);
         btnClear = findViewById(R.id.btnClear);
+        btnSort = findViewById(R.id.btnSort);
         lvTask = findViewById(R.id.lvTask);
 
         // ArrayAdapter //
@@ -60,6 +61,15 @@ public class MainActivity extends AppCompatActivity {
                         btnDelete.setEnabled(true);
 
                         clearText();
+
+                        lvTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                alTaskList.remove(position);
+                                aaAdapter.notifyDataSetChanged();
+                            }
+                        });
+
                         break;
                 }
             }
@@ -118,6 +128,15 @@ public class MainActivity extends AppCompatActivity {
                 clearText();
             }
         });
+
+        btnSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                java.util.Collections.sort(alTaskList);
+                aaAdapter.notifyDataSetChanged();
+            }
+        });
+
 
     }
 

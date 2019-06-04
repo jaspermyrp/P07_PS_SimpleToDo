@@ -45,6 +45,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/btn_clear" />
+
+        <Button
+            android:id="@+id/btnSort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sort" />
     </LinearLayout>
 
     <ListView
