@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String etGetTask = etTask.getText().toString();
 
-                if (etGetTask.length() == 0) {
+                if (etGetTask.length() == 0 || etGetTask.matches("\\s*")) {
                     Toast.makeText(MainActivity.this, "Enter a task.", Toast.LENGTH_SHORT).show();
                 } else {
                     alTaskList.add(etGetTask);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Exception caught", e.getMessage());
                     }
 
-                    if (pos > 0 && pos < alTaskList.size()) {
+                    if (pos > -1 && pos < alTaskList.size()) {
                         alTaskList.remove(pos);
                         aaAdapter.notifyDataSetChanged();
 
@@ -117,10 +117,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
-    public void clearText(){
+    public void clearText() {
         etTask.setText("");
     }
 }
